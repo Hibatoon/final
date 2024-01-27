@@ -1,7 +1,9 @@
 NAME = push_swap.a
+EXEC = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
+EXEC_SRC = main.c
 SRC = ft_atoi.c\
 		add_node.c\
 		append_node.c\
@@ -19,16 +21,20 @@ SRC = ft_atoi.c\
 		swap_a.c\
 		swap_b.c\
 		large_sort.c\
-		split_args.c
+		split_args.c\
+		is_sorted.c
 OBJ = $(SRC:.c=.o)
 
-all : $(NAME)
+all : $(NAME) $(EXEC)
 
 $(NAME) : $(OBJ)
 	$(AR) $(NAME) $(OBJ)
 
 $(OBJ) : $(SRC)
 	$(CC) $(CFLAGS) -c $(SRC)
+
+$(EXEC) : $(EXEC_SRC) $(NAME)
+	$(CC) $(CFLAGS) $(EXEC_SRC) $(NAME) -o $(EXEC)
 
 clean :
 	rm -f $(OBJ)

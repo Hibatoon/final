@@ -68,19 +68,20 @@ char	**free_all(char **p, int row)
 	return (NULL);
 }
 
-char	**ft_split(const char *s, char c)
+char	**ft_split(char *s, char c)
 {
 	int		i;
 	int		j;
 	int		index;
 	char	**res;
 
-	index = 0;
+	index = -1;
 	i = 0;
 	res = allocate(s, c);
 	if (res == NULL)
 		return (NULL);
-    res[0] = NULL;
+
+    //res[0] = NULL;
 	while (++index < count_word(s, c))
 	{
 		while (s[i] && s[i] == c)
@@ -95,4 +96,26 @@ char	**ft_split(const char *s, char c)
 	}
 	res[index] = NULL;
 	return (res);
+}
+
+int	split_args(char **argv, stack **a)
+{
+	char **args = ft_split(argv[1], ' ');
+	
+	int argc = count_word(argv[1], ' ');
+	
+	if(check_error(argc, args))
+		return 0;
+
+	int i = 0;
+    *a = add_node(ft_atoi(args[i++]));
+    while(i < argc)
+    {
+        append_node(a, add_node(ft_atoi(args[i])));
+        i++;
+    }
+        stack_indexing(*a);
+        stack_moves(*a);
+	free_all(args, argc);
+	return 1;
 }

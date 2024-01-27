@@ -19,14 +19,23 @@ typedef struct s_list
 } stack;
 
 void    init_stack(int argc, char **argv, stack **a);
+bool    check_error(int argc, char **argv);
+int     check_digit(char **argv, int i, int j);
+int    check_double(char **argv, int i, int j, int argc);
+
 stack *add_node(int content);
 void append_node(stack **head, stack *new_node);
 long	ft_atoi(const char *str);
 int	list_size(stack *lst);
+
 void    stack_indexing(stack *a);
 void    stack_moves(stack *a);
+void    free_stack(stack **a);
+
 void    tiny_sort(stack **a, stack **b, int argc);
-char	**ft_split(const char *s, char c);
+char	**ft_split(char *s, char c);
+int	split_args(char **argv, stack **a);
+int	count_word(const char *str, char c);
 
 void    pa(stack **first_el, stack **a);
 void    pb(stack **first_el, stack **b) ;
@@ -40,4 +49,7 @@ void    rrb(stack **b);
 int *init_arr(stack *a);
 void    a_to_b(stack **a, stack **b);
 void    b_to_a(stack **a, stack **b);
+void    large_sort(stack **a, stack **b);
+
+bool is_sorted(stack *a);
 #endif

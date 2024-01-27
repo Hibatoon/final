@@ -1,7 +1,7 @@
 #include "push_swap.h"
 
 
-static int    check_double(char **argv, int i, int j, int argc)
+int    check_double(char **argv, int i, int j, int argc)
 {
     while(j < argc)
     {
@@ -15,7 +15,7 @@ static int    check_double(char **argv, int i, int j, int argc)
     return 0;
 }
 
-static int     check_digit(char **argv, int i, int j)
+int     check_digit(char **argv, int i, int j)
 {
     while(argv[i][j])
     {
@@ -28,7 +28,7 @@ static int     check_digit(char **argv, int i, int j)
     }
     return 0;
 }
-static bool    check_error(int argc, char **argv)
+bool    check_error(int argc, char **argv)
 {
     int i;
     int j;
@@ -55,13 +55,18 @@ static bool    check_error(int argc, char **argv)
 
 void    init_stack(int argc, char **argv, stack **a)
 {
-    if(check_error(argc, argv))
+
+    if(argc == 2)
+    {
+        //split_args(argv, a);
+        if(!split_args(argv, a))
+            return(void)NULL;
+    }
+    else
+    {    
+        if(check_error(argc, argv))
         return (void)NULL;
-    // if(argc == 2)
-    //     argv = ft_split(argv[1], ' ');
-
-
-    int i = 1;
+        int i = 1;
         // if(argc == 2)
         //     i = 0;
         *a = add_node(ft_atoi(argv[i++]));
@@ -71,6 +76,8 @@ void    init_stack(int argc, char **argv, stack **a)
             i++;
         }
         stack_indexing(*a);
-        stack_moves(*a);
-    
+        stack_moves(*a);   
+    }
+
+
 }

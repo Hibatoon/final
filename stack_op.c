@@ -39,3 +39,15 @@ void    stack_moves(stack *a)
         temp = temp -> next;
     }
 }
+
+void    free_stack(stack **a)
+{
+    stack *temp = *a;
+
+    while(temp)
+    {
+        free(temp);
+        temp = temp -> next;
+    }
+    //free(*a);
+}

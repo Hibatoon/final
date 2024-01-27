@@ -94,9 +94,9 @@ void    a_to_b(stack **a, stack **b)
     if(size <= 16)
         offset = 2;
     else if (size >= 100)
-        offset = 16;
+        offset = 20;
     else
-        offset = 8;
+        offset = 12;
 
     int start = mid - offset;
 
@@ -136,6 +136,7 @@ void    a_to_b(stack **a, stack **b)
                 end = len - 1;
         }
     }
+    free(arr);
 }
 
 int     max_moves(stack *b)
@@ -179,4 +180,10 @@ void    b_to_a(stack **a, stack **b)
         }
         pa(b, a);
     }
+}
+
+void    large_sort(stack **a, stack **b)
+{
+    a_to_b(a, b);
+    b_to_a(a, b);
 }

@@ -12,24 +12,3 @@ void    swap_a(stack *first_node, stack *second_node)
     write(1, "sa\n", 3);
 }
 
-// int main()
-// {
-//     stack *head = NULL;
-//     head = add_node("hello");
-//     stack *node = add_node("world");
-//     add_back(&head, node);
-//     stack *tmp = head;
-//     while(tmp)
-//     {
-//         printf("%s\n", tmp -> data);
-//         tmp = tmp -> next;
-//     }
-//     swap_a(head, node);
-//     printf("*********\n");
-//     while (head)
-//     {
-//         printf("%s\n", head -> data);
-//         head = head -> next;
-//     }
-    
-// }

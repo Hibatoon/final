@@ -9,41 +9,30 @@ int main(int argc, char **argv)
     stack *b = NULL;
 
     init_stack(argc, argv, &a);
-    // stack *temp = a;
-    // while(temp)
-    // {
-    //     printf("%d\n", temp -> data);
-    //     temp = temp -> next;
-    // }
-    // temp = a;
-    // while(temp)
-    // {
-    //     printf("index : %d\n", temp -> index);
-    //     temp = temp -> next;
-    // }
-    // temp = a;
-    // while(temp)
-    // {
-    //     printf("moves : %d\n", temp -> moves);
-    //     temp = temp -> next;
-    // }
-    //tiny_sort(&a, &b, argc);
-    // temp = a;
-    // while(temp)
-    // {
-    //     printf("%d\n", temp -> data);
-    //     temp = temp -> next;
-    // }
-    a_to_b(&a, &b);
-    b_to_a(&a, &b);
-
-    stack *temp = a;
-
-    while(temp)
+    if(argc == 2)
+         argc = count_word(argv[1], ' ');
+    if(!a)
+        return 1;
+    if(is_sorted(a))
+        return 0;
+    if(argc <= 11)
     {
-        printf("%d ", temp -> data);
-        temp = temp -> next;
+        printf("tiny\n");
+        tiny_sort(&a, &b, argc);
     }
+    else
+    {
+        printf("large\n");
+        large_sort(&a, &b);
+    }
+
+    // stack *temp = a;
+
+    // while(temp)
+    // {
+    //     printf("%d ", temp -> data);
+    //     temp = temp -> next;
+    // }
     //printf("a's content : %d\n", a -> data);
-    free(a);
+    free_stack(&a);
 }
