@@ -17,22 +17,35 @@ int main(int argc, char **argv)
         return 0;
     if(argc <= 11)
     {
-        printf("tiny\n");
+        //printf("tiny\n");
         tiny_sort(&a, &b, argc);
     }
     else
     {
-        printf("large\n");
-        large_sort(&a, &b);
+        //printf("large\n");
+
+        //large_sort(&a, &b);
+
+        a_to_b(&a, &b);
+
+        stack *temp = b;
+        while(temp)
+        {
+            printf("%d\n", temp -> data);
+            temp = temp -> next;
+        }
+
+        printf("*******************************\n");
+        fill_a(&a, &b);
     }
 
-    // stack *temp = a;
+    stack *temp = a;
 
-    // while(temp)
-    // {
-    //     printf("%d ", temp -> data);
-    //     temp = temp -> next;
-    // }
+    while(temp)
+    {
+        printf("%d ", temp -> data);
+        temp = temp -> next;
+    }
     //printf("a's content : %d\n", a -> data);
     free_stack(&a);
 }

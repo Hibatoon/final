@@ -40,7 +40,7 @@ static int position(int start, int end, int *arr)
     return i;
 }
 
-static void    quick_sort(int start, int end, int *arr)
+void    quick_sort(int start, int end, int *arr)
 {
     if(end <= start)
         return;

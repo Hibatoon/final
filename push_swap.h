@@ -52,4 +52,10 @@ void    b_to_a(stack **a, stack **b);
 void    large_sort(stack **a, stack **b);
 
 bool is_sorted(stack *a);
+
+void    fill_a(stack **a, stack **b);
+
+void    quick_sort(int start, int end, int *arr);
+
+int     max_moves(stack *b);
 #endif
