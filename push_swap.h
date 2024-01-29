@@ -58,4 +58,7 @@ void    fill_a(stack **a, stack **b);
 void    quick_sort(int start, int end, int *arr);
 
 int     max_moves(stack *b);
+
+void    fill_it(stack **a, stack **b);
+int main();
 #endif

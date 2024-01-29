@@ -179,115 +179,263 @@
 
 // }
 
-bool    there_is(stack *b, int value);
+// bool    there_is(stack *b, int value);
 
-void    fill_a(stack **a, stack **b)
+// void    fill_a(stack **a, stack **b)
+// {
+//     ///printf("Entered\n");
+//     int *arr = init_arr(*b);
+//     int end = list_size(*b) - 1;
+
+//     quick_sort(0, end, arr);
+//     stack_moves(*b);
+//     stack *temp = *b;
+//     int moves = 0;
+//     while(temp -> next && temp)
+//     {
+//         if(temp -> data == arr[end])
+//             moves = temp -> moves;
+//         /////printf("data : %d arr[end] : %d\n", temp -> data, arr[end]);
+//         temp = temp -> next;
+//     }
+//     ///printf("moves : %d\n", moves);
+//     if(moves > 0)
+//     {
+//         while(moves--)
+//             rb(b);
+//         //printf("SEGV\n");
+//     }
+//     else if (moves < 0)
+//     {
+//         while(moves++)
+//             rrb(b);
+//     }
+//     pa(b, a);
+//     end--;
+//     int index = 0;
+//     temp = *b;
+//     while(temp)
+//     {
+//         printf("--> %d\n", temp -> data);
+//         temp = temp -> next;
+//     }
+//     while(end >= 0)
+//     {
+//         printf("ENTERING THE LOOP\n");
+//         stack_moves(*b);
+//         //end = list_size(*b);
+//         temp = *b;
+//         printf("arr[end] : %d\n", arr[end]);
+//         if(temp -> data == arr[end])
+//         {
+//             pa(b, a);
+//             end--;
+//             continue;
+//         }
+//         else if(temp -> data != arr[end] && index == 0)
+//         {
+//             ///printf("we are changing the index\n");
+//             pa(b, a);
+//             ra(a);
+//             index = 1;
+//             continue;
+//         }
+//         printf("little check arr[end] : %d\n", arr[end]);
+//         if(there_is(*b, arr[end]))
+//         {
+//             stack_moves(*b);
+//             printf("data");
+//             temp = *b;
+//             while(temp -> next && temp)
+//             {
+//                 if(temp -> data == arr[end])
+//                     moves = temp -> moves;
+//                 temp = temp -> next;
+//             }
+//             ///printf("first element : %d\n", (*b) -> data);
+//             ///printf("array end : %d\n", arr[end]);
+//             printf("second moves: %d\n", moves);
+//             if(moves > 0)
+//             {
+//                 while(moves--)
+//                     rb(b);
+//             }
+//             else if (moves < 0)
+//             {
+//                 while(moves++)
+//                     rrb(b);
+//             }
+//             pa(b, a);
+//             end--;
+//         }
+//         else
+//         {
+//             rra(a);
+//             index = 0;
+//             end--;
+//         }
+//         printf("arr index : %d arr value : %d\n", end, arr[end]);
+//     }
+//     free(arr);
+// }
+
+// bool     there_is(stack *b, int value)
+// {
+//     stack *temp = b;
+
+//     while(temp)
+//     {
+//         if(temp -> data == value)
+//             return(true);
+//         temp = temp -> next;
+//     }
+//     return(false);
+// }
+
+// void    moves_op_b(int moves, stack **b)
+// {
+//     if(moves < 0)
+//     {
+//         while(moves++)
+//             rrb(b);
+//     }
+//     else if (moves > 0)
+//     {
+//         while(moves--)
+//             rb(b);
+//     }
+// }
+
+
+void    move_b(int moves, stack **b)
 {
-    ///printf("Entered\n");
-    int *arr = init_arr(*b);
-    int end = list_size(*b) - 1;
-
-    quick_sort(0, end, arr);
-    stack_moves(*b);
-    stack *temp = *b;
-    int moves = 0;
-    while(temp -> next && temp)
-    {
-        if(temp -> data == arr[end])
-            moves = temp -> moves;
-        /////printf("data : %d arr[end] : %d\n", temp -> data, arr[end]);
-        temp = temp -> next;
-    }
-    ///printf("moves : %d\n", moves);
     if(moves > 0)
     {
         while(moves--)
             rb(b);
-        //printf("SEGV\n");
     }
-    else if (moves < 0)
+    else if(moves < 0)
     {
         while(moves++)
             rrb(b);
     }
-    pa(b, a);
-    end--;
-    int index = 0;
-    temp = *b;
-    while(temp)
-    {
-        printf("--> %d\n", temp -> data);
-        temp = temp -> next;
-    }
-    while(end >= 0)
-    {
-        printf("ENTERING THE LOOP\n");
-        stack_moves(*b);
-        //end = list_size(*b);
-        temp = *b;
-        printf("arr[end] : %d\n", arr[end]);
-        if(temp -> data == arr[end])
-        {
-            pa(b, a);
-            end--;
-            continue;
-        }
-        else if(temp -> data != arr[end] && index == 0)
-        {
-            ///printf("we are changing the index\n");
-            pa(b, a);
-            ra(a);
-            index = 1;
-            continue;
-        }
-        printf("little check arr[end] : %d\n", arr[end]);
-        if(there_is(*b, arr[end]))
-        {
-            stack_moves(*b);
-            printf("data")
-            temp = *b;
-            while(temp -> next && temp)
-            {
-                if(temp -> data == arr[end])
-                    moves = temp -> moves;
-                temp = temp -> next;
-            }
-            ///printf("first element : %d\n", (*b) -> data);
-            ///printf("array end : %d\n", arr[end]);
-            printf("second moves: %d\n", moves);
-            if(moves > 0)
-            {
-                while(moves--)
-                    rb(b);
-            }
-            else if (moves < 0)
-            {
-                while(moves++)
-                    rrb(b);
-            }
-            pa(b, a);
-            end--;
-        }
-        else
-        {
-            rra(a);
-            index = 0;
-            end--;
-        }
-        printf("arr index : %d arr value : %d\n", end, arr[end]);
-    }
-    free(arr);
 }
 
-bool     there_is(stack *b, int value)
+bool is_there(int num, stack *b)
 {
+    //stack_moves(b);
+    stack *temp = b;
+    //static int actions = 0;
+
+    while(temp)
+    {
+        if(temp -> data == num)
+        {
+            //actions = temp -> moves;
+            return true;
+        }
+        temp = temp -> next;
+    }
+    return false;
+}
+
+int     find_moves(int num, stack *b)
+{
+    stack_moves(b);
     stack *temp = b;
 
     while(temp)
     {
-        if(temp -> data == value)
-            return(true);
+        if(temp -> data == num)
+            return(temp -> moves);
         temp = temp -> next;
     }
-    return(false);
+    return 0;
+}
+void    fill_a(stack **a, stack **b)
+{
+    int *arr = init_arr(*b);
+    int end = list_size(*b) - 1;
+    int moves = 0;
+
+    quick_sort(0, end, arr);
+
+    stack_moves(*b);
+
+
+
+    
+    stack *temp = *b;
+    
+    while(temp)
+    {
+        if(temp -> data == arr[end])
+            moves = temp -> moves;
+        temp = temp -> next;
+    }
+    
+    
+    move_b(moves, b);
+    pa(b, a);
+    end--;
+    //printf("NEW ENNNNND : %d\n", end);
+    int index = 0;
+
+    while(list_size(*b))
+    {
+        //printf("list size : %d\n", list_size(*b));
+        stack_moves(*b);
+        temp = *b;
+        //end = list_size(*b) - 1;
+
+//        stack *lol = *b;
+
+        // while(lol)
+        // {
+        //     //printf("--> %d\n", lol -> data);
+        //     lol = lol -> next;
+        // }
+        // int i = 0;
+
+        // while(i < list_size(*b))
+        // {
+        //     //printf("arr[%d] : %d\n", i, arr[i]);
+        //     i++;
+        // }
+        //printf("max pos in arr : %d\n", end);
+        //printf("new max : %d\n", arr[end]);
+
+        if(temp -> data == arr[end] && index == 0)
+        {
+            pa(b, a);
+            end--;
+        }
+        else if(temp -> data != arr[end] && index == 0)
+        {
+            pa(b, a);
+            ra(a);
+            index = 1;
+        }
+
+        if(index == 1)
+        {
+            if(is_there(arr[end], *b))
+            {
+                moves = find_moves(arr[end], *b);
+
+                //printf("moves : %d\n", moves);
+
+                move_b(moves, b);
+                pa(b, a);
+                end--;
+            }
+            else
+            {
+                rra(a);
+                end--;
+                index = 0;
+            }
+        }
+    }
+
 }

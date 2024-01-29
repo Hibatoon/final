@@ -27,15 +27,15 @@ int main(int argc, char **argv)
         //large_sort(&a, &b);
 
         a_to_b(&a, &b);
+        //b_to_a(&a, &b);
+        // stack *temp = b;
+        // while(temp)
+        // {
+        //     printf("%d\n", temp -> data);
+        //     temp = temp -> next;
+        // }
 
-        stack *temp = b;
-        while(temp)
-        {
-            printf("%d\n", temp -> data);
-            temp = temp -> next;
-        }
-
-        printf("*******************************\n");
+        //printf("*******************************\n");
         fill_a(&a, &b);
     }
 
