@@ -27,6 +27,7 @@ stack *add_node(int content);
 void append_node(stack **head, stack *new_node);
 long	ft_atoi(const char *str);
 int	list_size(stack *lst);
+stack	*last_node(stack *lst);
 
 void    stack_indexing(stack *a);
 void    stack_moves(stack *a);

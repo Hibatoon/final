@@ -323,15 +323,14 @@ void    move_b(int moves, stack **b)
 
 bool is_there(int num, stack *b)
 {
-    //stack_moves(b);
+
     stack *temp = b;
-    //static int actions = 0;
+
 
     while(temp)
     {
         if(temp -> data == num)
         {
-            //actions = temp -> moves;
             return true;
         }
         temp = temp -> next;
@@ -378,32 +377,12 @@ void    fill_a(stack **a, stack **b)
     move_b(moves, b);
     pa(b, a);
     end--;
-    //printf("NEW ENNNNND : %d\n", end);
     int index = 0;
 
     while(list_size(*b))
     {
-        //printf("list size : %d\n", list_size(*b));
         stack_moves(*b);
         temp = *b;
-        //end = list_size(*b) - 1;
-
-//        stack *lol = *b;
-
-        // while(lol)
-        // {
-        //     //printf("--> %d\n", lol -> data);
-        //     lol = lol -> next;
-        // }
-        // int i = 0;
-
-        // while(i < list_size(*b))
-        // {
-        //     //printf("arr[%d] : %d\n", i, arr[i]);
-        //     i++;
-        // }
-        //printf("max pos in arr : %d\n", end);
-        //printf("new max : %d\n", arr[end]);
 
         if(temp -> data == arr[end] && index == 0)
         {
@@ -437,5 +416,12 @@ void    fill_a(stack **a, stack **b)
             }
         }
     }
-
+    if(!is_sorted(*a))
+    {
+        temp = last_node(*a);
+        if(temp && temp -> data == arr[end])
+            rra(a);
+    }
+   // printf("min : %d\n", arr[end]);
+    free(arr);
 }

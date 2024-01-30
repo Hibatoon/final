@@ -3,6 +3,8 @@
 
 int	count_word(const char *str, char c)
 {
+	if(!str)
+		return(0);
 	int	i;
 	int	count;
 
@@ -24,7 +26,7 @@ int	count_word(const char *str, char c)
 char	**allocate(const char *s, char c)
 {
 	int		words;
-	char	**res;
+	char	**res = NULL;
 
 	if (!s)
 		return (NULL);
@@ -38,6 +40,8 @@ char	**allocate(const char *s, char c)
 
 char	*alo_cpy(const char *s, int i, int j)
 {
+	if(!s)
+		return(NULL);
 	char	*str;
 	int		k;
 
@@ -101,7 +105,8 @@ char	**ft_split(char *s, char c)
 int	split_args(char **argv, stack **a)
 {
 	char **args = ft_split(argv[1], ' ');
-	
+	if(!*args)
+		return 0;
 	int argc = count_word(argv[1], ' ');
 	
 	if(check_error(argc, args))

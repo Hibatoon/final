@@ -65,7 +65,7 @@ void    init_stack(int argc, char **argv, stack **a)
     else
     {    
         if(check_error(argc, argv))
-        return (void)NULL;
+            return (void)NULL;
         int i = 1;
         // if(argc == 2)
         //     i = 0;

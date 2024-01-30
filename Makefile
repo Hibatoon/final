@@ -23,7 +23,8 @@ SRC = ft_atoi.c\
 		large_sort.c\
 		split_args.c\
 		is_sorted.c\
-		fill_a.c
+		fill_a.c\
+		last_node.c
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME) $(EXEC)
