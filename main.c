@@ -3,6 +3,7 @@
 
 int main(int argc, char **argv)
 {
+    mtrace();
     if(argc == 1)
         return 1;
     stack *a = NULL;
@@ -39,13 +40,13 @@ int main(int argc, char **argv)
         fill_a(&a, &b);
     }
 
-    // stack *temp = a;
+    stack *temp = a;
 
-    // while(temp)
-    // {
-    //     printf("%d ", temp -> data);
-    //     temp = temp -> next;
-    // }
+    while(temp)
+    {
+        printf("%d ", temp -> data);
+        temp = temp -> next;
+    }
     //printf("a's content : %d\n", a -> data);
     free_stack(&a);
     free_stack(&b);

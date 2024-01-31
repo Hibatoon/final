@@ -93,10 +93,12 @@ void    a_to_b(stack **a, stack **b)
 
     if(size <= 16)
         offset = 2;
-    else if (size >= 100)
+    // else if (size >= 500)
+    //     offset = 25;
+    else if (size > 100)
         offset = 30;
     else
-        offset = 12;
+        offset = 10;
 
     int start = mid - offset;
 

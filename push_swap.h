@@ -7,6 +7,8 @@
 #include <limits.h>
 #include <stdbool.h>
 
+#include <mcheck.h>
+
 //#define END 2147483648
 
 typedef struct s_list
