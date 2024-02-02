@@ -10,7 +10,10 @@ int main(int argc, char **argv)
 
     init_stack(argc, argv, &a);
     if(argc == 2)
-         argc = count_word(argv[1], ' ');
+    {
+        argc = count_word(argv[1], ' ') + 1;
+    }
+    //printf("argc : %d\n", argc);
     if(!a)
         return 1;
     if(is_sorted(a))
@@ -39,6 +42,7 @@ int main(int argc, char **argv)
         fill_a(&a, &b);
     }
 
+    //printf("argc : %d\n", argc);
     // stack *temp = a;
 
     // while(temp)

@@ -7,7 +7,7 @@
 #include <limits.h>
 #include <stdbool.h>
 
-#include <mcheck.h>
+//#include <mcheck.h>
 
 //#define END 2147483648
 
@@ -38,6 +38,7 @@ void    free_stack(stack **a);
 void    tiny_sort(stack **a, stack **b, int argc);
 char	**ft_split(char *s, char c);
 int	split_args(char **argv, stack **a);
+
 int	count_word(const char *str, char c);
 
 void    pa(stack **first_el, stack **a);
@@ -45,6 +46,7 @@ void    pb(stack **first_el, stack **b) ;
 void    ra(stack **a);
 void    rra(stack **a);
 void    swap_a(stack *first_node, stack *second_node);
+void    swap_b(stack *first_node, stack *second_node);
 void    rb(stack **b);
 void    rrb(stack **b);
 
@@ -63,5 +65,11 @@ void    quick_sort(int start, int end, int *arr);
 int     max_moves(stack *b);
 
 void    fill_it(stack **a, stack **b);
-int main();
+
+
+void    execute_actions(stack **a, stack **b);
+void    both_actions(char *line, stack **a, stack **b);
+void    b_actions(char *line, stack **a, stack **b);
+void    a_actions(char *line, stack **a, stack **b);
+
 #endif

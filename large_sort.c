@@ -187,5 +187,6 @@ void    b_to_a(stack **a, stack **b)
 void    large_sort(stack **a, stack **b)
 {
     a_to_b(a, b);
-    b_to_a(a, b);
+    //b_to_a(a, b);
+    fill_a(a, b);
 }
