@@ -72,4 +72,9 @@ void    both_actions(char *line, stack **a, stack **b);
 void    b_actions(char *line, stack **a, stack **b);
 void    a_actions(char *line, stack **a, stack **b);
 
+
+stack *helper(stack **b);
+void    sort_list(stack **c, stack **b);
+void    totoro(stack **a, stack **b);
+stack* mergeSort(stack* head);
 #endif

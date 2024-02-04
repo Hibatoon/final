@@ -389,14 +389,14 @@ void    fill_a(stack **a, stack **b)
             pa(b, a);
             end--;
         }
-        else if(temp -> data != arr[end] && index == 0)
+        else if(temp -> data != arr[end] && (index == 0 || last_node(*a)->data < temp->data))
         {
             pa(b, a);
             ra(a);
-            index = 1;
+            index ++;
         }
 
-        if(index == 1)
+        if(index >= 1)
         {
             if(is_there(arr[end], *b))
             {
@@ -412,9 +412,14 @@ void    fill_a(stack **a, stack **b)
             {
                 rra(a);
                 end--;
-                index = 0;
+                index --;
             }
         }
+    }
+    while (index >= 1)
+    {
+        rra(a);
+        index--;
     }
     if(!is_sorted(*a))
     {

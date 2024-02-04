@@ -29,8 +29,7 @@ $(BOBJ) : $(BSRC)
 
 $(EXEC) : $(EXEC_SRC) $(NAME)
 	$(CC) $(CFLAGS) $(EXEC_SRC) $(NAME) -o $(EXEC)
-#$(BEXEC) : $(BEXEC_SRC) $(NAME)
-#	$(CC) $(CFLAGS) $(BEXEC_SRC) $(NAME) -o $(EXEC)
+
 clean :
 	rm -f $(OBJ) $(BOBJ)
 
