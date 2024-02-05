@@ -1,38 +1,15 @@
-#include "push_swap.h"
-
-
-// int	count_word(const char *str, char c)
-// {
-// 	if(!str)
-// 		return(0);
-// 	int	i;
-// 	int	count;
-
-// 	i = 0;
-// 	count = 0;
-// 	while (str[i])
-// 	{
-// 		while (str[i] && str[i] == c)
-// 			i++;
-// 		if (str[i])
-// 			count ++;
-// 		while (str[i] != c && str[i] != '\0')
-// 			i++;
-		
-// 	}
-// 	return (count);
-// }
+#include "push_swap_bonus.h"
 
 char	**allocate(const char *s, char c)
 {
 	int		words;
-	char	**res = NULL;
+	char	**res;
 
+	res = NULL;
 	if (!s)
 		return (NULL);
-
 	words = count_word(s, c);
-	res = malloc ((words + 2) * sizeof(char*));
+	res = malloc((words + 2) * sizeof(char *));
 	if (res == NULL)
 		return (NULL);
 	return (res);
@@ -40,12 +17,12 @@ char	**allocate(const char *s, char c)
 
 char	*alo_cpy(const char *s, int i, int j)
 {
-	if(!s)
-		return(NULL);
 	char	*str;
 	int		k;
 
-	str = malloc ((j + 1) * sizeof(char));
+	if (!s)
+		return (NULL);
+	str = malloc((j + 1) * sizeof(char));
 	if (str == NULL)
 		return (NULL);
 	k = 0;
@@ -84,8 +61,6 @@ char	**ft_split(char *s, char c)
 	res = allocate(s, c);
 	if (res == NULL)
 		return (NULL);
-
-    //res[0] = NULL;
 	while (++index < count_word(s, c))
 	{
 		while (s[i] && s[i] == c)
@@ -102,35 +77,26 @@ char	**ft_split(char *s, char c)
 	return (res);
 }
 
-
 int	split_args(char **argv, stack **a)
 {
-	char **args = ft_split(argv[1], ' ');
-	
-	// int j = 0;
-	// while(args[j])
-	// {
-	// 	printf("%s\n", args[j]);
-	// 	j++;
-	// }
+	char	**args;
+	int		argc;
+	int		i;
 
-	if(!*args)
-		return 0;
-	//printf("cc\n");
-	int argc = count_word(argv[1], ' ');
-	
-	if(check_error(argc, args))
-		return 0;
-
-	int i = 0;
-    *a = add_node(ft_atoi(args[i++]));
-    while(i < argc)
-    {
-        append_node(a, add_node(ft_atoi(args[i])));
-        i++;
-    }
-        stack_indexing(*a);
-        stack_moves(*a);
-	//free_all(args, argc);
-	return 1;
+	args = ft_split(argv[1], ' ');
+	if (!*args)
+		return (0);
+	argc = count_word(argv[1], ' ');
+	if (check_error(argc, args))
+		return (0);
+	i = 0;
+	*a = add_node(ft_atoi(args[i++]));
+	while (i < argc)
+	{
+		append_node(a, add_node(ft_atoi(args[i])));
+		i++;
+	}
+	stack_indexing(*a);
+	stack_moves(*a);
+	return (1);
 }

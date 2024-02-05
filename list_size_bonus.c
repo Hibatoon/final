@@ -1,14 +1,12 @@
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 int	list_size(stack *lst)
 {
+	int		count;
+	
 	if(!lst)
 		return 0;
-	int		count;
-	//t_list	*ptr;
-
 	count = 0;
-	//ptr = lst;
 	while (lst != NULL)
 	{
 		count++;

@@ -1,4 +1,4 @@
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
 
 int    check_double(char **argv, int i, int j, int argc)

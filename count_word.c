@@ -2,11 +2,11 @@
 
 int	count_word(const char *str, char c)
 {
-	if(!str)
-		return(0);
-	int	i;
-	int	count;
+	int		i;
+	int		count;
 
+	if (!str)
+		return (0);
 	i = 0;
 	count = 0;
 	while (str[i])
@@ -14,10 +14,9 @@ int	count_word(const char *str, char c)
 		while (str[i] && str[i] == c)
 			i++;
 		if (str[i])
-			count ++;
+			count++;
 		while (str[i] != c && str[i] != '\0')
 			i++;
-		
 	}
 	return (count);
 }

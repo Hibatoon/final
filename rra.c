@@ -1,38 +1,23 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 #include "push_swap.h"
 
-void    rra(stack **a)
+void	rra(stack **a)
 {
-    stack *last_1 = *a;
-    int     k = 1;
-    int size = list_size(*a);
+	stack	*head;
+	stack	*last_1;
+	int		size;
+	int		k;
 
-    while(k < size - 1) //7
-    {
-        last_1 = last_1 -> next;
-        k++;
-    }
-
-    stack *head = last_1 -> next;
-
-    head -> next = *a;
-    *a = head;
-
-    last_1 ->next = NULL;
-
-    //return(last_1);
-    write(1, "rra\n", 4);
+	last_1 = *a;
+	k = 1;
+	size = list_size(*a);
+	while (k < size - 1)
+	{
+		last_1 = last_1->next;
+		k++;
+	}
+	head = last_1->next;
+	head->next = *a;
+	*a = head;
+	last_1->next = NULL;
+	write(1, "rra\n", 4);
 }
