@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tiny_sort.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/05 22:00:01 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/05 23:04:05 by hcharra          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static int	max_pos(stack *a)
+static int	max_pos(t_stack *a)
 {
 	int		max;
 	int		i;
-	stack	*temp;
+	t_stack	*temp;
 	int		pos;
 
 	max = INT_MIN;
@@ -24,37 +36,13 @@ static int	max_pos(stack *a)
 	return (pos);
 }
 
-static int	min_pos(stack *a)
-{
-	int		min;
-	int		i;
-	stack	*temp;
-	int		pos;
-
-	min = INT_MAX;
-	i = 0;
-	temp = a;
-	pos = 0;
-	while (temp)
-	{
-		i++;
-		if (temp->data < min)
-		{
-			min = temp->data;
-			pos = i;
-		}
-		temp = temp->next;
-	}
-	return (pos);
-}
-
-static void	sort_two(stack *a)
+static void	sort_two(t_stack *a)
 {
 	if (a->data > a->next->data)
 		swap_a(a, a->next);
 }
 
-static void	sort_three(stack **a)
+static void	sort_three(t_stack **a)
 {
 	int	position;
 
@@ -73,45 +61,14 @@ static void	sort_three(stack **a)
 		sort_two(*a);
 }
 
-void	sort_else(stack **a, stack **b)
+void	sort_else(t_stack **a, t_stack **b)
 {
 	int		size;
-	int		i;
-	int		moves;
-	int		min;
-	stack	*temp;
 
 	size = list_size(*a);
 	while (size > 3)
 	{
-		stack_moves(*a);
-		i = 0;
-		moves = 0;
-		min = min_pos(*a) - 1;
-		temp = *a;
-		while (i < min)
-		{
-			temp = temp->next;
-			i++;
-		}
-		moves = temp->moves;
-		if (moves < 0)
-		{
-			while (moves)
-			{
-				rra(a);
-				moves++;
-			}
-		}
-		else if (moves > 0)
-		{
-			while (moves)
-			{
-				ra(a);
-				moves--;
-			}
-		}
-		pb(a, b);
+		fill_b(a, b);
 		size--;
 	}
 	sort_three(a);
@@ -120,7 +77,7 @@ void	sort_else(stack **a, stack **b)
 		pa(b, a);
 }
 
-void	tiny_sort(stack **a, stack **b, int argc)
+void	tiny_sort(t_stack **a, t_stack **b, int argc)
 {
 	if (argc == 3)
 		sort_two(*a);

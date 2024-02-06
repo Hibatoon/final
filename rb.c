@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rb.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/05 21:59:25 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/05 22:26:48 by hcharra          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	rb(stack **b)
+void	rb(t_stack **b)
 {
-	stack	*first_element;
-	stack	*last;
+	t_stack	*first_element;
+	t_stack	*last;
 
 	if (*b == NULL || (*b)->next == NULL)
 		return ;

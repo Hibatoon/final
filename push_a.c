@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_a.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/05 21:58:39 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/05 22:26:17 by hcharra          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	pa(stack **first_el, stack **a)
+void	pa(t_stack **first_el, t_stack **a)
 {
-	stack	*temp;
-	stack	*removed;
+	t_stack	*temp;
+	t_stack	*removed;
 
 	if (*first_el == NULL)
 		return ;

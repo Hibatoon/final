@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ra.c                                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/05 21:59:22 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/05 22:26:40 by hcharra          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	ra(stack **a)
+void	ra(t_stack **a)
 {
-	stack	*first_element;
-	stack	*last;
+	t_stack	*first_element;
+	t_stack	*last;
 
 	if (*a == NULL || (*a)->next == NULL)
 		return ;

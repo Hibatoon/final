@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/05 21:56:58 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/05 22:09:22 by hcharra          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap_bonus.h"
 
 bool	check_instruction(char *line)
@@ -20,14 +32,14 @@ bool	check_instruction(char *line)
 	i = 0;
 	while (actions[i] != NULL)
 	{
-		if (strcmp(line, actions[i]) == 0)
+		if (ft_strcmp(line, actions[i]) == 0)
 			return (true);
 		i++;
 	}
 	return (false);
 }
 
-void	a_actions(char *line, stack **a, stack **b)
+void	a_actions(char *line, t_stack **a, t_stack **b)
 {
 	if (!strcmp(line, "ra\n"))
 		ra_bonus(a);
@@ -39,7 +51,7 @@ void	a_actions(char *line, stack **a, stack **b)
 		pa_bonus(b, a);
 }
 
-void	b_actions(char *line, stack **a, stack **b)
+void	b_actions(char *line, t_stack **a, t_stack **b)
 {
 	if (!strcmp(line, "rb\n"))
 		rb_bonus(b);
@@ -51,7 +63,7 @@ void	b_actions(char *line, stack **a, stack **b)
 		pb_bonus(a, b);
 }
 
-void	execute_actions(stack **a, stack **b)
+void	execute_actions(t_stack **a, t_stack **b)
 {
 	char	*line;
 
@@ -75,8 +87,8 @@ void	execute_actions(stack **a, stack **b)
 
 int	main(int argc, char **argv)
 {
-	stack	*a;
-	stack	*b;
+	t_stack	*a;
+	t_stack	*b;
 
 	if (argc == 1)
 		return (0);

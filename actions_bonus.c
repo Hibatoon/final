@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   actions_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/05 21:56:23 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/05 22:07:10 by hcharra          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap_bonus.h"
 
-void	sa_bonus(stack *first_node, stack *second_node)
+void	sa_bonus(t_stack *first_node, t_stack *second_node)
 {
 	int	temp;
 
@@ -11,7 +23,7 @@ void	sa_bonus(stack *first_node, stack *second_node)
 	second_node->data = temp;
 }
 
-void	sb_bonus(stack *first_node, stack *second_node)
+void	sb_bonus(t_stack *first_node, t_stack *second_node)
 {
 	int	temp;
 
@@ -22,12 +34,12 @@ void	sb_bonus(stack *first_node, stack *second_node)
 	second_node->data = temp;
 }
 
-void	rrb_bonus(stack **b)
+void	rrb_bonus(t_stack **b)
 {
-	stack	*last_1;
+	t_stack	*last_1;
 	int		k;
 	int		size;
-	stack	*head;
+	t_stack	*head;
 
 	if (b == NULL || *b == NULL)
 		return ;
@@ -45,12 +57,12 @@ void	rrb_bonus(stack **b)
 	last_1->next = NULL;
 }
 
-void	rra_bonus(stack **a)
+void	rra_bonus(t_stack **a)
 {
-	stack	*last_1;
+	t_stack	*last_1;
 	int		k;
 	int		size;
-	stack	*head;
+	t_stack	*head;
 
 	last_1 = *a;
 	k = 1;
@@ -66,10 +78,10 @@ void	rra_bonus(stack **a)
 	last_1->next = NULL;
 }
 
-void	rb_bonus(stack **b)
+void	rb_bonus(t_stack **b)
 {
-	stack	*first_element;
-	stack	*last;
+	t_stack	*first_element;
+	t_stack	*last;
 
 	if (*b == NULL || (*b)->next == NULL)
 		return ;
@@ -84,10 +96,10 @@ void	rb_bonus(stack **b)
 	first_element->next = NULL;
 }
 
-void	ra_bonus(stack **a)
+void	ra_bonus(t_stack **a)
 {
-	stack	*first_element;
-	stack	*last;
+	t_stack	*first_element;
+	t_stack	*last;
 
 	if (*a == NULL || (*a)->next == NULL)
 		return ;
@@ -102,10 +114,10 @@ void	ra_bonus(stack **a)
 	first_element->next = NULL;
 }
 
-void	pb_bonus(stack **first_el, stack **b)
+void	pb_bonus(t_stack **first_el, t_stack **b)
 {
-	stack	*temp;
-	stack	*removed;
+	t_stack	*temp;
+	t_stack	*removed;
 
 	if (*first_el == NULL)
 		return ;
@@ -117,10 +129,10 @@ void	pb_bonus(stack **first_el, stack **b)
 	free(removed);
 }
 
-void	pa_bonus(stack **first_el, stack **a)
+void	pa_bonus(t_stack **first_el, t_stack **a)
 {
-	stack	*temp;
-	stack	*removed;
+	t_stack	*temp;
+	t_stack	*removed;
 
 	if (*first_el == NULL)
 		return ;

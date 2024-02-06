@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split_args_bonus.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/05 21:59:34 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/05 22:27:36 by hcharra          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap_bonus.h"
 
 char	**allocate(const char *s, char c)
@@ -77,7 +89,7 @@ char	**ft_split(char *s, char c)
 	return (res);
 }
 
-int	split_args(char **argv, stack **a)
+int	split_args(char **argv, t_stack **a)
 {
 	char	**args;
 	int		argc;

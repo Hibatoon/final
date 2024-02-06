@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   fill_a.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/05 21:57:12 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/05 22:19:43 by hcharra          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	move_b(int moves, stack **b)
+void	move_b(int moves, t_stack **b)
 {
 	if (moves > 0)
 	{
@@ -14,9 +26,9 @@ void	move_b(int moves, stack **b)
 	}
 }
 
-bool	is_there(int num, stack *b)
+bool	is_there(int num, t_stack *b)
 {
-	stack	*temp;
+	t_stack	*temp;
 
 	temp = b;
 	while (temp)
@@ -30,9 +42,9 @@ bool	is_there(int num, stack *b)
 	return (false);
 }
 
-int	find_moves(int num, stack *b)
+int	find_moves(int num, t_stack *b)
 {
-	stack	*temp;
+	t_stack	*temp;
 
 	stack_moves(b);
 	temp = b;
@@ -45,12 +57,12 @@ int	find_moves(int num, stack *b)
 	return (0);
 }
 
-void	fill_a(stack **a, stack **b)
+void	fill_a(t_stack **a, t_stack **b)
 {
 	int		*arr;
 	int		end;
 	int		moves;
-	stack	*temp;
+	t_stack	*temp;
 	int		index;
 
 	arr = init_arr(*b);

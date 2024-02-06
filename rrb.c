@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rrb.c                                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/05 21:59:31 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/05 22:27:13 by hcharra          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	rrb(stack **b)
+void	rrb(t_stack **b)
 {
-	stack	*last_1;
+	t_stack	*last_1;
 	int		k;
 	int		size;
-	stack	*head;
+	t_stack	*head;
 
 	if (b == NULL || *b == NULL)
 		return ;

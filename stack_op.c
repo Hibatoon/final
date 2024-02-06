@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_op.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/05 21:59:43 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/06 15:53:23 by hcharra          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-void	stack_indexing(stack *a)
+void	stack_indexing(t_stack *a)
 {
-	stack	*temp;
+	t_stack	*temp;
 	int		i;
 
 	temp = a;
@@ -15,18 +27,16 @@ void	stack_indexing(stack *a)
 	}
 }
 
-void	stack_moves(stack *a)
+void	stack_moves(t_stack *a)
 {
-	stack	*temp;
+	t_stack	*temp;
 	int		i;
-	int		size;
 	int		half;
 
 	temp = a;
 	i = 0;
-	size = list_size(a);
-	half = size / 2;
-	if (size % 2 == 1)
+	half = list_size(a) / 2;
+	if (list_size(a) % 2 == 1)
 		half++;
 	while (temp && i < half)
 	{
@@ -34,7 +44,7 @@ void	stack_moves(stack *a)
 		i++;
 		temp = temp->next;
 	}
-	if (size % 2 == 1)
+	if (list_size(a) % 2 == 1)
 		half--;
 	i = half * -1;
 	while (temp && i < 0)
@@ -45,10 +55,9 @@ void	stack_moves(stack *a)
 	}
 }
 
-void	free_stack(stack **a)
+void	free_stack(t_stack **a)
 {
-	stack	*temp;
-	stack	*temp;
+	t_stack	*temp;
 
 	temp = *a;
 	while (temp)

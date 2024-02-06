@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   split_args.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/05 21:59:36 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/06 22:44:14 by hcharra          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 char	**allocate(const char *s, char c)
@@ -37,7 +49,7 @@ char	*alo_cpy(const char *s, int i, int j)
 
 char	**free_all(char **p, int row)
 {
-	int	i;
+	int		i;
 
 	i = 0;
 	while (i < row)
@@ -77,7 +89,33 @@ char	**ft_split(char *s, char c)
 	return (res);
 }
 
-int	split_args(char **argv, stack **a)
+static bool	check_error_split(int argc, char **argv)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	while (i < argc)
+	{
+		j = i + 1;
+		if ((ft_atoi((argv[i])) > INT_MAX) || ((ft_atoi(argv[i])) < INT_MIN))
+		{
+			write(2, "Error\n", 6);
+			return (true);
+		}
+		if (check_double(argv, i, j, argc))
+		{
+			return (true);
+		}
+		j = 0;
+		if (check_digit(argv, i, j))
+			return (true);
+		i++;
+	}
+	return (false);
+}
+
+int	split_args(char **argv, t_stack **a)
 {
 	char	**args;
 	int		argc;
@@ -87,7 +125,7 @@ int	split_args(char **argv, stack **a)
 	if (!*args)
 		return (0);
 	argc = count_word(argv[1], ' ');
-	if (check_error(argc, args))
+	if (check_error_split(argc, args))
 		return (0);
 	i = 0;
 	*a = add_node(ft_atoi(args[i++]));
@@ -98,5 +136,6 @@ int	split_args(char **argv, stack **a)
 	}
 	stack_indexing(*a);
 	stack_moves(*a);
+	free_all(args, argc);
 	return (1);
 }

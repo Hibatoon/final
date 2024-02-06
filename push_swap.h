@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/05 21:59:16 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/06 23:51:33 by hcharra          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -18,60 +30,60 @@ typedef struct s_list
 	int				moves;
 
 	struct s_list	*next;
-}					stack;
+}					t_stack;
 
-void				init_stack(int argc, char **argv, stack **a);
+void				init_stack(int argc, char **argv, t_stack **a);
 bool				check_error(int argc, char **argv);
 int					check_digit(char **argv, int i, int j);
 int					check_double(char **argv, int i, int j, int argc);
 
-stack				*add_node(int content);
-void				append_node(stack **head, stack *new_node);
+t_stack				*add_node(int content);
+void				append_node(t_stack **head, t_stack *new_node);
 long				ft_atoi(const char *str);
-int					list_size(stack *lst);
-stack				*last_node(stack *lst);
+int					list_size(t_stack *lst);
+t_stack				*last_node(t_stack *lst);
 
-void				stack_indexing(stack *a);
-void				stack_moves(stack *a);
-void				free_stack(stack **a);
+void				stack_indexing(t_stack *a);
+void				stack_moves(t_stack *a);
+void				free_stack(t_stack **a);
 
-void				tiny_sort(stack **a, stack **b, int argc);
+void				tiny_sort(t_stack **a, t_stack **b, int argc);
 char				**ft_split(char *s, char c);
-int					split_args(char **argv, stack **a);
+int					split_args(char **argv, t_stack **a);
 
 int					count_word(const char *str, char c);
 
-void				pa(stack **first_el, stack **a);
-void				pb(stack **first_el, stack **b);
-void				ra(stack **a);
-void				rra(stack **a);
-void				swap_a(stack *first_node, stack *second_node);
-void				swap_b(stack *first_node, stack *second_node);
-void				rb(stack **b);
-void				rrb(stack **b);
+void				pa(t_stack **first_el, t_stack **a);
+void				pb(t_stack **first_el, t_stack **b);
+void				ra(t_stack **a);
+void				rra(t_stack **a);
+void				swap_a(t_stack *first_node, t_stack *second_node);
+void				swap_b(t_stack *first_node, t_stack *second_node);
+void				rb(t_stack **b);
+void				rrb(t_stack **b);
 
-int					*init_arr(stack *a);
-void				a_to_b(stack **a, stack **b);
-void				b_to_a(stack **a, stack **b);
-void				large_sort(stack **a, stack **b);
+int					*init_arr(t_stack *a);
+void				a_to_b(t_stack **a, t_stack **b);
+void				b_to_a(t_stack **a, t_stack **b);
+void				large_sort(t_stack **a, t_stack **b);
 
-bool				is_sorted(stack *a);
+bool				is_sorted(t_stack *a);
 
-void				fill_a(stack **a, stack **b);
+void				fill_a(t_stack **a, t_stack **b);
 
 void				quick_sort(int start, int end, int *arr);
 
-int					max_moves(stack *b);
+int					max_moves(t_stack *b);
 
-void				fill_it(stack **a, stack **b);
+void				fill_it(t_stack **a, t_stack **b);
 
-void				execute_actions(stack **a, stack **b);
-void				both_actions(char *line, stack **a, stack **b);
-void				b_actions(char *line, stack **a, stack **b);
-void				a_actions(char *line, stack **a, stack **b);
+void				execute_actions(t_stack **a, t_stack **b);
+void				both_actions(char *line, t_stack **a, t_stack **b);
+void				b_actions(char *line, t_stack **a, t_stack **b);
+void				a_actions(char *line, t_stack **a, t_stack **b);
 
-stack				*helper(stack **b);
-void				sort_list(stack **c, stack **b);
-void				totoro(stack **a, stack **b);
-stack				*mergeSort(stack *head);
+void				fill_b(t_stack **a, t_stack **b);
+void				neg_moves(int moves, t_stack **a);
+void				pos_moves(int moves, t_stack **a);
+int				large_helper(t_stack **a, int start, int end);
 #endif

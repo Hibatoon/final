@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_stack.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/05 21:58:03 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/06 23:23:37 by hcharra          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	check_double(char **argv, int i, int j, int argc)
@@ -18,8 +30,8 @@ int	check_digit(char **argv, int i, int j)
 {
 	while (argv[i][j])
 	{
-		if(!(((argv[i][j] >= '0' && argv[i][j] <= '9') || ((j == 0
-			&& argv[i][j] == '-') && (argv[i][j + 1] >= '0'
+		if (!(((argv[i][j] >= '0' && argv[i][j] <= '9') || ((j == 0
+					&& argv[i][j] == '-') && (argv[i][j + 1] >= '0'
 			&& argv[i][j + 1] <= '9')))))
 		{
 			write(2, "Error\n", 6);
@@ -45,7 +57,9 @@ bool	check_error(int argc, char **argv)
 			return (true);
 		}
 		if (check_double(argv, i, j, argc))
+		{
 			return (true);
+		}
 		j = 0;
 		if (check_digit(argv, i, j))
 			return (true);
@@ -54,9 +68,9 @@ bool	check_error(int argc, char **argv)
 	return (false);
 }
 
-void	init_stack(int argc, char **argv, stack **a)
+void	init_stack(int argc, char **argv, t_stack **a)
 {
-	int		i;
+	int	i;
 
 	if (argc == 2)
 	{

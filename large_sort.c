@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   large_sort.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/05 21:58:17 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/06 23:53:30 by hcharra          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-int	*init_arr(stack *a)
+int	*init_arr(t_stack *a)
 {
 	int		*arr;
 	int		i;
-	stack	*temp;
+	t_stack	*temp;
 	int		size;
 
 	size = list_size(a);
@@ -58,9 +70,9 @@ void	quick_sort(int start, int end, int *arr)
 	quick_sort(pivot + 1, end, arr);
 }
 
-static bool	still_a_num(stack *a, int start, int end) // 17 8  start = 0 end = 7
+static bool	still_a_num(t_stack *a, int start, int end)
 {
-	stack	*temp;
+	t_stack	*temp;
 	int		data;
 
 	temp = a;
@@ -74,9 +86,9 @@ static bool	still_a_num(stack *a, int start, int end) // 17 8  start = 0 end = 7
 	return (false);
 }
 
-static int	target_index(stack *a, int start, int end)
+static int	target_index(t_stack *a, int start, int end)
 {
-	stack	*temp;
+	t_stack	*temp;
 	int		data;
 
 	temp = a;
@@ -90,21 +102,10 @@ static int	target_index(stack *a, int start, int end)
 	return (-1);
 }
 
-void	a_to_b(stack **a, stack **b)
+static int	get_offset(int size)
 {
-	int	*arr;
-	int	size;
-	int	mid;
 	int	offset;
-	int	start;
-	int	end;
-	int	len;
-	int	moves;
 
-	arr = init_arr(*a);
-	size = list_size(*a);
-	quick_sort(0, size - 1, arr);
-	mid = size / 2 - 1;
 	offset = 0;
 	if (size <= 16)
 		offset = 2;
@@ -112,90 +113,75 @@ void	a_to_b(stack **a, stack **b)
 		offset = 30;
 	else
 		offset = 10;
-	start = mid - offset;
-	end = mid + offset;
-	len = size;
+	return (offset);
+}
+
+void	a_to_b_help(int moves, t_stack **a, t_stack **b)
+{
+	if (moves < 0)
+		neg_moves(moves, a);
+	else if (moves > 0)
+		pos_moves(moves, a);
+	pb(a, b);
+}
+
+int	check_start(int start)
+{
+	if (start < 0)
+		return (0);
+	return (start);
+}
+
+int	check_end(int end, int size)
+{
+	if (end > size - 1)
+		return (size - 1);
+	return (end);
+}
+
+void	index_and_move(t_stack **a)
+{
+	stack_indexing(*a);
+	stack_moves(*a);
+}
+
+void	a_to_b(t_stack **a, t_stack **b)
+{
+	int	*arr;
+	int	size;
+	int	offset;
+	int	start;
+	int	end;
+	int	moves;
+
+	arr = init_arr(*a);
+	size = list_size(*a);
+	quick_sort(0, size - 1, arr);
+	offset = get_offset(size);
+	start = (size / 2 - 1) - offset;
+	end = (size / 2 - 1) + offset;
 	while (list_size(*a))
 	{
-		stack_indexing(*a);
-		stack_moves(*a);
+		index_and_move(a);
 		if (still_a_num(*a, arr[start], arr[end]))
 		{
 			moves = target_index(*a, arr[start], arr[end]);
-			if (moves < 0)
-			{
-				while (moves++)
-					rra(a);
-			}
-			else if (moves > 0)
-			{
-				while (moves--)
-					ra(a);
-			}
-			pb(a, b);
-			if ((*b)->data < arr[mid])
+			a_to_b_help(moves, a, b);
+			if ((*b)->data < arr[size / 2 - 1])
 				rb(b);
 		}
 		else
 		{
 			start -= offset;
-			if (start < 0)
-				start = 0;
+			start = check_start(start);
 			end += offset;
-			if (end > len)
-				end = len - 1;
+			end = check_end(end, size);
 		}
 	}
 	free(arr);
 }
 
-int	max_moves(stack *b)
-{
-	int		max;
-	int		moves;
-	stack	*temp;
-	int		max;
-	int		moves;
-	stack	*temp;
-
-	max = INT_MIN;
-	moves = 0;
-	temp = b;
-	while (temp)
-	{
-		if (temp->data > max)
-		{
-			max = temp->data;
-			moves = temp->moves;
-		}
-		temp = temp->next;
-	}
-	return (moves);
-}
-
-void	b_to_a(stack **a, stack **b)
-{
-	int	moves;
-
-	while (list_size(*b))
-	{
-		stack_moves(*b);
-		moves = max_moves(*b);
-		if (moves < 0)
-		{
-			while (moves++)
-				rrb(b);
-		}
-		else if (moves > 0)
-		{
-			while (moves--)
-				rb(b);
-		}
-		pa(b, a);
-	}
-}
-
-void	large_sort(stack **a, stack **b)
+void	large_sort(t_stack **a, t_stack **b)
 {
 	a_to_b(a, b);
 	fill_a(a, b);

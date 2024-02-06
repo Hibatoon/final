@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   count_word_bonus.c                                 :+:      :+:    :+:   */
+/*   check_one.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 21:57:03 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/05 21:57:04 by hcharra          ###   ########.fr       */
+/*   Created: 2024/02/06 23:22:33 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/06 23:22:39 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap_bonus.h"
+#include "push_swap.h"
 
-int	count_word(const char *str, char c)
+bool	check_error(int argc, char **argv)
 {
-	int		i;
-	int		count;
+	int	i;
+	int	j;
 
-	if (!str)
-		return (0);
-	i = 0;
-	count = 0;
-	while (str[i])
+	i = 1;
+	while (i < argc)
 	{
-		while (str[i] && str[i] == c)
-			i++;
-		if (str[i])
-			count++;
-		while (str[i] != c && str[i] != '\0')
-			i++;
+		j = i + 1;
+		if ((ft_atoi((argv[i])) > INT_MAX) || ((ft_atoi(argv[i])) < INT_MIN))
+		{
+			write(2, "Error\n", 6);
+			return (true);
+		}
+		if (check_double(argv, i, j, argc))
+			return (true);
+		j = 0;
+		if (check_digit(argv, i, j))
+			return (true);
+		i++;
 	}
-	return (count);
+	return (false);
 }
