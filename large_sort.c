@@ -6,7 +6,7 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:58:17 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/06 23:53:30 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/08 21:23:17 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,27 +116,36 @@ static int	get_offset(int size)
 	return (offset);
 }
 
-void	a_to_b_help(int moves, t_stack **a, t_stack **b)
-{
-	if (moves < 0)
-		neg_moves(moves, a);
-	else if (moves > 0)
-		pos_moves(moves, a);
-	pb(a, b);
-}
+// void	a_to_b_help(int moves, t_stack **a, t_stack **b)
+// {
+// 	if (moves < 0)
+// 		neg_moves(moves, a);
+// 	else if (moves > 0)
+// 		pos_moves(moves, a);
+// 	pb(a, b);
+// }
 
-int	check_start(int start)
+int	check_end(int end, int size, int offset)
 {
-	if (start < 0)
-		return (0);
-	return (start);
-}
-
-int	check_end(int end, int size)
-{
+	end += offset;
 	if (end > size - 1)
 		return (size - 1);
 	return (end);
+}
+
+void	move_a_to_b(int moves, t_stack **a, t_stack **b)
+{
+	if (moves > 0)
+	{
+		while (moves--)
+			ra(a);
+	}
+	else if (moves < 0)
+	{
+		while (moves++)
+			rra(a);
+	}
+	pb(a, b);
 }
 
 void	index_and_move(t_stack **a)
@@ -144,41 +153,50 @@ void	index_and_move(t_stack **a)
 	stack_indexing(*a);
 	stack_moves(*a);
 }
-
-void	a_to_b(t_stack **a, t_stack **b)
+void	a_to_b_helping(int *arr, int start, int end, t_stack **a, t_stack **b)
 {
-	int	*arr;
-	int	size;
-	int	offset;
-	int	start;
-	int	end;
 	int	moves;
 
-	arr = init_arr(*a);
-	size = list_size(*a);
-	quick_sort(0, size - 1, arr);
-	offset = get_offset(size);
-	start = (size / 2 - 1) - offset;
-	end = (size / 2 - 1) + offset;
+	moves = target_index(*a, arr[start], arr[end]);
+	move_a_to_b(moves, a, b);
+	if ((*b)->data < arr[list_size(*a) / 2 - 1])
+		rb(b);
+}
+
+int	check_start(int start, int offset)
+{
+	start -= offset;
+	if (start < 0)
+		return (0);
+	return (start);
+}
+void	a_to_b(t_stack **a, t_stack **b)
+{
+	t_large	sort_info;
+
+	sort_info.arr = init_arr(*a);
+	sort_info.size = list_size(*a);
+	quick_sort(0, sort_info.size - 1, sort_info.arr);
+	sort_info.offset = get_offset(sort_info.size);
+	sort_info.start = (sort_info.size / 2 - 1) - sort_info.offset;
+	sort_info.end = (sort_info.size / 2 - 1) + sort_info.offset;
 	while (list_size(*a))
 	{
 		index_and_move(a);
-		if (still_a_num(*a, arr[start], arr[end]))
+		if (still_a_num(*a, sort_info.arr[sort_info.start],sort_info.arr[sort_info.end]))
 		{
-			moves = target_index(*a, arr[start], arr[end]);
-			a_to_b_help(moves, a, b);
-			if ((*b)->data < arr[size / 2 - 1])
+			sort_info.moves = target_index(*a, sort_info.arr[sort_info.start],sort_info.arr[sort_info.end]);
+			a_to_b_help(sort_info.moves, a, b);
+			if ((*b)->data < sort_info.arr[sort_info.size / 2 - 1])
 				rb(b);
 		}
 		else
 		{
-			start -= offset;
-			start = check_start(start);
-			end += offset;
-			end = check_end(end, size);
+			sort_info.start = check_start(sort_info.start, sort_info.offset);
+			sort_info.end = check_end(sort_info.end, sort_info.size, sort_info.offset);
 		}
 	}
-	free(arr);
+	free(sort_info.arr);
 }
 
 void	large_sort(t_stack **a, t_stack **b)

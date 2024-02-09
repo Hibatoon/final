@@ -6,7 +6,7 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:57:12 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/05 22:19:43 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/08 21:12:19 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,56 +56,32 @@ int	find_moves(int num, t_stack *b)
 	}
 	return (0);
 }
-
+//handle two string with strjoin, and handle empty string and spaces before the args and 
+//null stack b in the checker and add other mouvements
 void	fill_a(t_stack **a, t_stack **b)
 {
 	int		*arr;
 	int		end;
-	int		moves;
 	t_stack	*temp;
-	int		index;
+	static int		index;
 
-	arr = init_arr(*b);
 	end = list_size(*b) - 1;
-	moves = 0;
-	quick_sort(0, end, arr);
-	stack_moves(*b);
-	temp = *b;
-	while (temp)
-	{
-		if (temp->data == arr[end])
-			moves = temp->moves;
-		temp = temp->next;
-	}
-	move_b(moves, b);
-	pa(b, a);
-	end--;
+	arr = sorted_arr(b, end);
+	end = push_max(b, a, end);
 	index = 0;
 	while (list_size(*b))
 	{
 		stack_moves(*b);
 		temp = *b;
 		if (temp->data == arr[end] && index == 0)
-		{
-			pa(b, a);
-			end--;
-		}
+			end = return_end(a, b, end);
 		else if (temp->data != arr[end] && (index == 0
 				|| last_node(*a)->data < temp->data))
-		{
-			pa(b, a);
-			ra(a);
-			index++;
-		}
+			index = not_max(b, a, index);
 		if (index >= 1)
 		{
 			if (is_there(arr[end], *b))
-			{
-				moves = find_moves(arr[end], *b);
-				move_b(moves, b);
-				pa(b, a);
-				end--;
-			}
+				end = move_it(a, b, end, arr[end]);
 			else
 			{
 				rra(a);
@@ -114,16 +90,6 @@ void	fill_a(t_stack **a, t_stack **b)
 			}
 		}
 	}
-	while (index >= 1)
-	{
-		rra(a);
-		index--;
-	}
-	if (!is_sorted(*a))
-	{
-		temp = last_node(*a);
-		if (temp && temp->data == arr[end])
-			rra(a);
-	}
+	full_bottom(a, index, arr[end]);
 	free(arr);
 }

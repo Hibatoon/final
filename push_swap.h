@@ -6,7 +6,7 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:59:16 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/06 23:51:33 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/08 20:24:36 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,28 @@ void				a_actions(char *line, t_stack **a, t_stack **b);
 void				fill_b(t_stack **a, t_stack **b);
 void				neg_moves(int moves, t_stack **a);
 void				pos_moves(int moves, t_stack **a);
-int				large_helper(t_stack **a, int start, int end);
+int					large_helper(t_stack **a, int start, int end);
+int					*sorted_arr(t_stack **x, int end);
+void				a_to_b_help(int moves, t_stack **a, t_stack **b);
+int					push_max(t_stack **b, t_stack **a, int end);
+void				move_b(int moves, t_stack **b);
+int					not_max(t_stack **b, t_stack **a, int index);
+int					find_moves(int num, t_stack *b);
+int					move_it(t_stack **a, t_stack **b, int end, int max);
+int					empty_bottom(t_stack **a, t_stack **b, int end);
+bool				is_there(int num, t_stack *b);
+void				full_bottom(t_stack **a, int index, int end);
+int					return_end(t_stack **a, t_stack **b, int end);
+void				still_there(t_stack **a, t_stack **b, int offset, int *arr);
+void				index_and_move(t_stack **a);
+
+typedef	struct d_list
+{
+	int	*arr;
+	int	size;
+	int	offset;
+	int	start;
+	int	end;
+	int	moves;
+}	t_large;
 #endif

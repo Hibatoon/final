@@ -6,22 +6,13 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:23:59 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/06 23:45:47 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/07 16:25:17 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	a_to_b_help(int moves, t_stack **a, t_stack **b)
-{
-	if (moves < 0)
-		neg_moves(moves, a);
-	else if (moves > 0)
-		pos_moves(moves, a);
-	pb(a, b);
-}
-
-static int	target_index(t_stack *a, int start, int end)
+int	target_index(t_stack *a, int start, int end)
 {
 	t_stack	*temp;
 	int		data;
@@ -37,17 +28,124 @@ static int	target_index(t_stack *a, int start, int end)
 	return (-1);
 }
 
-void	large_helper(t_stack **a, t_stack **b, int start, int end)
+void	a_to_b_help(int moves, t_stack **a, t_stack **b)
 {
-	int		moves;
-	int		*arr;
-	int		size;
+	if (moves < 0)
+		neg_moves(moves, a);
+	else if (moves > 0)
+		pos_moves(moves, a);
+	pb(a, b);
+}
 
-	arr = init_arr(*a);
+int	*sorted_arr(t_stack **x, int end)
+{
+	int	*arr;
+
+	arr = init_arr(*x);
+	quick_sort(0, end, arr);
+	return (arr);
+}
+
+// void	move_b(int moves, t_stack **b)
+// {
+// 	if (moves > 0)
+// 	{
+// 		while (moves--)
+// 			rb(b);
+// 	}
+// 	else if (moves < 0)
+// 	{
+// 		while (moves++)
+// 			rrb(b);
+// 	}
+// }
+
+void	still_there(t_stack **a, t_stack **b, int offset, int *arr)
+{
+	int	moves;
+	int	size;
+	int	start;
+	int	end;
+
+	// int		*arr;
 	size = list_size(*a);
-	quick_sort(0, size - 1, arr);
+	// arr = sorted_arr(a, size - 1);
+	start = (size / 2 - 1) - offset;
+	end = (size / 2 - 1) + offset;
+	index_and_move(a);
+	// if (still_a_num(*a, arr[start], arr[end]))
+	// {
 	moves = target_index(*a, arr[start], arr[end]);
+	printf("moves : %d\n", moves);
 	a_to_b_help(moves, a, b);
+	printf("segv\n");
 	if ((*b)->data < arr[size / 2 - 1])
 		rb(b);
+	//}
+}
+//*****************************************************
+int	push_max(t_stack **b, t_stack **a, int end)
+{
+	t_stack	*temp;
+	int		*arr;
+	int		moves;
+
+	stack_moves(*b);
+	temp = *b;
+	arr = sorted_arr(b, end);
+	moves = 0;
+	while (temp)
+	{
+		if (temp->data == arr[end])
+			moves = temp->moves;
+		temp = temp->next;
+	}
+	move_b(moves, b);
+	pa(b, a);
+	end--;
+	free(arr);
+	return (end);
+}
+
+int	not_max(t_stack **b, t_stack **a, int index)
+{
+	pa(b, a);
+	ra(a);
+	index++;
+	return (index);
+}
+
+int	move_it(t_stack **a, t_stack **b, int end, int max)
+{
+	int	moves;
+
+	moves = find_moves(max, *b);
+	move_b(moves, b);
+	pa(b, a);
+	end--;
+	return (end);
+}
+
+void	full_bottom(t_stack **a, int index, int end)
+{
+	t_stack	*temp;
+
+	while (index >= 1)
+	{
+		rra(a);
+		index--;
+	}
+	if (!is_sorted(*a))
+	{
+		temp = last_node(*a);
+		if (temp && temp->data == end)
+			rra(a);
+	}
+}
+
+int	return_end(t_stack **a, t_stack **b, int end)
+{
+	pa(b, a);
+	end--;
+	return (end);
 }
