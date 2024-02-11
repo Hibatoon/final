@@ -2,13 +2,14 @@ NAME = push_swap.a
 EXEC = push_swap
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -fsanitize=address -g3
 AR = ar rcs
 EXEC_SRC = main.c
 
 SRC = ft_atoi.c add_node.c append_node.c list_size.c init_stack.c stack_op.c tiny_sort.c ra.c\
 		rb.c rra.c rrb.c push_a.c push_b.c swap_a.c swap_b.c large_sort.c split_args.c\
-		is_sorted.c fill_a.c last_node.c count_word.c main.c separate.c large_helper.c
+		is_sorted.c fill_a.c last_node.c count_word.c main.c separate.c large_helper.c\
+		large_sort_utils.c arr.c ft_split.c
 BSRC = actions_a.c actions_b.c ft_atoi_bonus.c init_stack_bonus.c\
 		get_next_line.c get_next_line_utils.c\
 		count_word_bonus.c split_args_bonus.c stack_op_bonus.c list_size_bonus.c is_sorted_bonus.c\

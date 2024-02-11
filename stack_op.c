@@ -6,7 +6,7 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:59:43 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/06 15:53:23 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/11 23:02:35 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,19 @@ void	stack_moves(t_stack *a)
 void	free_stack(t_stack **a)
 {
 	t_stack	*temp;
-
+	t_stack *next;
+	
 	temp = *a;
-	while (temp)
+	while (*a)
 	{
-		free(temp);
-		temp = temp->next;
+		next = (*a)-> next;
+		free(*a);
+		*a= next;
 	}
+}
+
+void	index_and_move(t_stack **a)
+{
+	stack_indexing(*a);
+	stack_moves(*a);
 }

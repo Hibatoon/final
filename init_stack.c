@@ -6,7 +6,7 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:58:03 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/06 23:23:37 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/11 21:19:55 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,27 +68,27 @@ bool	check_error(int argc, char **argv)
 	return (false);
 }
 
-void	init_stack(int argc, char **argv, t_stack **a)
-{
-	int	i;
+// void	init_stack(int argc, char **argv, t_stack **a)
+// {
+// 	int	i;
 
-	if (argc == 2)
-	{
-		if (!split_args(argv, a))
-			return ((void)(NULL));
-	}
-	else
-	{
-		if (check_error(argc, argv))
-			return ((void)(NULL));
-		i = 1;
-		*a = add_node(ft_atoi(argv[i++]));
-		while (i < argc)
-		{
-			append_node(a, add_node(ft_atoi(argv[i])));
-			i++;
-		}
-		stack_indexing(*a);
-		stack_moves(*a);
-	}
-}
+// 	if (argc == 2)
+// 	{
+// 		if (!split_args(argv, a))
+// 			return ((void)(NULL));
+// 	}
+// 	else
+// 	{
+// 		if (check_error(argc, argv))
+// 			return ((void)(NULL));
+// 		i = 1;
+// 		*a = add_node(ft_atoi(argv[i++]));
+// 		while (i < argc)
+// 		{
+// 			append_node(a, add_node(ft_atoi(argv[i])));
+// 			i++;
+// 		}
+// 		stack_indexing(*a);
+// 		stack_moves(*a);
+// 	}
+// }

@@ -6,7 +6,7 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:57:12 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/08 21:12:19 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/09 21:27:03 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,36 +60,29 @@ int	find_moves(int num, t_stack *b)
 //null stack b in the checker and add other mouvements
 void	fill_a(t_stack **a, t_stack **b)
 {
-	int		*arr;
-	int		end;
-	t_stack	*temp;
-	static int		index;
-
-	end = list_size(*b) - 1;
-	arr = sorted_arr(b, end);
-	end = push_max(b, a, end);
-	index = 0;
+	t_fill fill_info = ft_assign(a, b);
+	
 	while (list_size(*b))
 	{
 		stack_moves(*b);
-		temp = *b;
-		if (temp->data == arr[end] && index == 0)
-			end = return_end(a, b, end);
-		else if (temp->data != arr[end] && (index == 0
-				|| last_node(*a)->data < temp->data))
-			index = not_max(b, a, index);
-		if (index >= 1)
+		fill_info.temp = *b;
+		if (fill_info.temp->data == fill_info.arr[fill_info.end] && fill_info.index == 0)
+			fill_info.end = return_end(a, b, fill_info.end);
+		else if (fill_info.temp->data != fill_info.arr[fill_info.end] && (fill_info.index == 0
+				|| last_node(*a)->data < fill_info.temp->data))
+			fill_info.index = not_max(b, a, fill_info.index);
+		if (fill_info.index >= 1)
 		{
-			if (is_there(arr[end], *b))
-				end = move_it(a, b, end, arr[end]);
+			if (is_there(fill_info.arr[fill_info.end], *b))
+				fill_info.end = move_it(a, b, fill_info.end, fill_info.arr[fill_info.end]);
 			else
 			{
 				rra(a);
-				end--;
-				index--;
+				fill_info.end--;
+				fill_info.index--;
 			}
 		}
 	}
-	full_bottom(a, index, arr[end]);
-	free(arr);
+	full_bottom(a, fill_info.index, fill_info.arr[fill_info.end]);
+	free(fill_info.arr);
 }

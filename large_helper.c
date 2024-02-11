@@ -6,27 +6,11 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:23:59 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/07 16:25:17 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/09 21:27:39 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	target_index(t_stack *a, int start, int end)
-{
-	t_stack	*temp;
-	int		data;
-
-	temp = a;
-	while (temp)
-	{
-		data = temp->data;
-		if (data >= start && data <= end)
-			return (temp->moves);
-		temp = temp->next;
-	}
-	return (-1);
-}
 
 void	a_to_b_help(int moves, t_stack **a, t_stack **b)
 {
@@ -148,4 +132,15 @@ int	return_end(t_stack **a, t_stack **b, int end)
 	pa(b, a);
 	end--;
 	return (end);
+}
+
+t_fill	ft_assign(t_stack **a, t_stack **b)
+{
+	t_fill temp;
+	
+	temp.end = list_size(*b) - 1;
+	temp.arr = sorted_arr(b, temp.end);
+	temp.end = push_max(b, a, temp.end);
+	temp.index = 0;
+	return (temp);
 }

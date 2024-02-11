@@ -6,7 +6,7 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:59:16 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/08 20:24:36 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/11 21:37:45 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,20 +93,43 @@ void				move_b(int moves, t_stack **b);
 int					not_max(t_stack **b, t_stack **a, int index);
 int					find_moves(int num, t_stack *b);
 int					move_it(t_stack **a, t_stack **b, int end, int max);
-int					empty_bottom(t_stack **a, t_stack **b, int end);
+// int					empty_bottom(t_stack **a, t_stack **b, int end);
 bool				is_there(int num, t_stack *b);
 void				full_bottom(t_stack **a, int index, int end);
 int					return_end(t_stack **a, t_stack **b, int end);
 void				still_there(t_stack **a, t_stack **b, int offset, int *arr);
 void				index_and_move(t_stack **a);
 
-typedef	struct d_list
+typedef struct d_list
 {
-	int	*arr;
-	int	size;
-	int	offset;
-	int	start;
-	int	end;
-	int	moves;
-}	t_large;
+	int				*arr;
+	int				size;
+	int				offset;
+	int				start;
+	int				end;
+	int				moves;
+}					t_large;
+int					get_offset(int size);
+int					target_index(t_stack *a, int start, int end);
+int					check_start(int start, int offset);
+int					check_end(int end, int size, int offset);
+
+
+typedef struct f_list
+{
+	int		*arr;
+	int		end;
+	t_stack	*temp;
+	int		index;
+}		t_fill;
+void	ft_fill(t_stack **a, t_stack **b, t_fill fill_info);
+t_fill	ft_assign(t_stack **a, t_stack **b);
+
+
+
+
+//void    split_all(char **argv, t_stack **a);
+int	split_all(int *argc, char **argv, t_stack **a);
+bool	error_full_check(t_stack **a);
+
 #endif

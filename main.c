@@ -6,7 +6,7 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:58:35 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/06 22:45:12 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/11 23:28:59 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,18 @@ int	main(int argc, char **argv)
 	if (argc == 1)
 		return (1);
 	b = NULL;
-	init_stack(argc, argv, &a);
-	if (argc == 2)
-		argc = count_word(argv[1], ' ') + 1;
+			//init_stack(argc, argv, &a);
+	if(!split_all(&argc, argv, &a))
+		return 0;
+	//printf("argc : %d\n", argc);
+	if(error_full_check(&a))
+	{
+		free_stack(&a);
+		return 0;
+	}
+	//printf("argc = %d\n", argc);
+			//if (argc == 2)
+	 		//		argc = count_word(argv[1], ' ') + 1;
 	if (!a)
 		return (1);
 	if (is_sorted(a))
@@ -35,6 +44,13 @@ int	main(int argc, char **argv)
 		fill_a(&a, &b);
 	}
 	free_stack(&a);
-	free_stack(&b);
+	// t_stack *temp = a;
+	// while(temp)
+	// {
+	// 	printf("%d\n", temp -> data);
+	// 	temp = temp -> next;
+	// }
+	
+	//free_stack(&b);
 	//system("leaks push_swap");
 }
