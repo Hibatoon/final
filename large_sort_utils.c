@@ -6,7 +6,7 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 13:11:07 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/09 13:11:57 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/12 14:57:42 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	get_offset(int size)
 	int	offset;
 
 	offset = 0;
-	if (size <= 16)
+	if (size <= 21)
 		offset = 2;
 	else if (size > 100)
 		offset = 30;

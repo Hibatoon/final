@@ -6,7 +6,7 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:23:59 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/09 21:27:39 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/12 19:02:40 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,6 @@ int	*sorted_arr(t_stack **x, int end)
 	return (arr);
 }
 
-// void	move_b(int moves, t_stack **b)
-// {
-// 	if (moves > 0)
-// 	{
-// 		while (moves--)
-// 			rb(b);
-// 	}
-// 	else if (moves < 0)
-// 	{
-// 		while (moves++)
-// 			rrb(b);
-// 	}
-// }
-
 void	still_there(t_stack **a, t_stack **b, int offset, int *arr)
 {
 	int	moves;
@@ -51,23 +37,18 @@ void	still_there(t_stack **a, t_stack **b, int offset, int *arr)
 	int	start;
 	int	end;
 
-	// int		*arr;
 	size = list_size(*a);
-	// arr = sorted_arr(a, size - 1);
 	start = (size / 2 - 1) - offset;
 	end = (size / 2 - 1) + offset;
 	index_and_move(a);
-	// if (still_a_num(*a, arr[start], arr[end]))
-	// {
 	moves = target_index(*a, arr[start], arr[end]);
 	printf("moves : %d\n", moves);
 	a_to_b_help(moves, a, b);
 	printf("segv\n");
 	if ((*b)->data < arr[size / 2 - 1])
 		rb(b);
-	//}
 }
-//*****************************************************
+
 int	push_max(t_stack **b, t_stack **a, int end)
 {
 	t_stack	*temp;
@@ -137,7 +118,7 @@ int	return_end(t_stack **a, t_stack **b, int end)
 t_fill	ft_assign(t_stack **a, t_stack **b)
 {
 	t_fill temp;
-	
+
 	temp.end = list_size(*b) - 1;
 	temp.arr = sorted_arr(b, temp.end);
 	temp.end = push_max(b, a, temp.end);

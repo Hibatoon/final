@@ -1,42 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   both_actions_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 21:58:35 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/12 19:00:58 by hcharra          ###   ########.fr       */
+/*   Created: 2024/02/12 15:33:09 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/12 19:13:20 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "push_swap_bonus.h"
 
-int	main(int argc, char **argv)
+void	rrr(t_stack **a, t_stack **b)
 {
-	t_stack	*a;
-	t_stack	*b;
+	if (!a || !b)
+		return ;
+	rra_bonus(a);
+	rrb_bonus(b);
+}
 
-	if (argc == 1)
-		return (1);
-	b = NULL;
-	if (!split_all(&argc, argv, &a))
-		return (0);
-	if (error_full_check(&a))
-	{
-		free_stack(&a);
-		return (0);
-	}
-	if (!a)
-		return (1);
-	if (is_sorted(a))
-		return (0);
-	if (argc <= 11)
-		tiny_sort(&a, &b, argc);
-	else
-	{
-		a_to_b(&a, &b);
-		fill_a(&a, &b);
-	}
-	free_stack(&a);
+void	rr(t_stack **a, t_stack **b)
+{
+	ra_bonus(a);
+	rb_bonus(b);
 }

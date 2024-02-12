@@ -6,7 +6,7 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:58:17 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/09 12:07:21 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/12 19:04:24 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,7 @@ void	a_to_b(t_stack **a, t_stack **b)
 		index_and_move(a);
 		if (still_a_num(*a, sort_info.arr[sort_info.start],
 				sort_info.arr[sort_info.end]))
-		{
 			sort_info.moves = there_is(a, b, sort_info);
-		}
 		else
 		{
 			sort_info.start = check_start(sort_info.start, sort_info.offset);

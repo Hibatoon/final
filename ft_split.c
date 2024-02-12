@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/12 19:06:39 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/12 19:07:24 by hcharra          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 char	**allocate(const char *s, char c)
@@ -37,7 +49,7 @@ char	*alo_cpy(const char *s, int i, int j)
 
 char	**free_all(char **p, int row)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (i < row)
@@ -79,8 +91,8 @@ char	**ft_split(char *s, char c)
 
 static bool	check_error_split(int argc, char **argv)
 {
-	int		i;
-	int		j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < argc)
@@ -102,67 +114,65 @@ static bool	check_error_split(int argc, char **argv)
 	}
 	return (false);
 }
+
 void	fill_stack(char **res, t_stack **a)
 {
-	int		i;
+	int	i;
 
-	if(!*res)
-		return;
+	if (!*res)
+		return ;
 	i = 0;
-	while(res[i])
+	while (res[i])
 	{
-
 		append_node(a, add_node(ft_atoi(res[i])));
 		i++;
 	}
 }
+
 bool	error_full_check(t_stack **a)
 {
-	t_stack *temp;
-	t_stack *temp_next;
+	t_stack	*temp;
+	t_stack	*temp_next;
 
-	// if(!*a)
-	// 	return false;
 	temp = *a;
-	temp_next = temp -> next;
-
-	while(temp)
+	temp_next = temp->next;
+	while (temp)
 	{
-		temp_next = temp -> next;
-
-		while(temp_next)
+		temp_next = temp->next;
+		while (temp_next)
 		{
-			if(temp -> data == temp_next -> data)
+			if (temp->data == temp_next->data)
 			{
 				write(2, "Error\n", 6);
 				return (true);
 			}
-			temp_next = temp_next -> next;
+			temp_next = temp_next->next;
 		}
-		temp = temp -> next;
+		temp = temp->next;
 	}
 	return (false);
 }
-int		check_str(int words, t_stack **a)
+
+int	check_str(int words, t_stack **a)
 {
 	t_stack	*temp;
 
 	temp = *a;
-	if(!words)
+	if (!words)
 	{
-		if(temp)
+		if (temp)
 		{
 			write(2, "Error\n", 6);
 			free_stack(a);
-			return 1;
+			return (1);
 		}
-		if(!temp)
+		if (!temp)
 		{
 			write(2, "Error\n", 6);
-			return 1;
+			return (1);
 		}
 	}
-	return 0;
+	return (0);
 }
 
 int	split_all(int *argc, char **argv, t_stack **a)
@@ -173,31 +183,24 @@ int	split_all(int *argc, char **argv, t_stack **a)
 
 	*argc = 0;
 	i = 1;
-	while(argv[i])
+	while (argv[i])
 	{
 		res = ft_split(argv[i], ' ');
-		if(!res)
-			return 0;
-		// if(!*res)
-		// 	printf("res value is null\n");
+		if (!res)
+			return (0);
 		*argc += count_word(argv[i], ' ');
-		//printf("argc : %d\n", *argc);
 		words = count_word(argv[i], ' ');
-		//printf("words : %d\n", words);
-		if(check_str(words, a))
-		{
-			//printf("words are null\n");
-			return 0;
-		}
-		if(check_error_split(words, res))
+		if (check_str(words, a))
+			return (0);
+		if (check_error_split(words, res))
 		{
 			free_stack(a);
-			return 0;
+			return (0);
 		}
 		fill_stack(res, a);
 		free_all(res, words);
 		i++;
 	}
-	*argc += 1;	
-	return 1;
+	*argc += 1;
+	return (1);
 }
