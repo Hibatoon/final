@@ -6,7 +6,7 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:58:17 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/12 19:04:24 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/13 13:42:46 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	move_a_to_b(int moves, t_stack **a, t_stack **b)
 	pb(a, b);
 }
 
-int	there_is(t_stack **a, t_stack **b, t_large sort_info)
+static int	there_is(t_stack **a, t_stack **b, t_large sort_info)
 {
 	sort_info.moves = target_index(*a, sort_info.arr[sort_info.start],
 			sort_info.arr[sort_info.end]);

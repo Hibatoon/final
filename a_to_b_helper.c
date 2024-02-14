@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   a_to_b_helper.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 21:58:35 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/14 14:47:36 by hcharra          ###   ########.fr       */
+/*   Created: 2024/02/13 13:24:10 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/13 13:24:11 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// handle all the white spaces
-int	main(int argc, char **argv)
+void	a_to_b_help(int moves, t_stack **a, t_stack **b)
 {
-	t_stack	*a;
-	t_stack	*b;
+	if (moves < 0)
+		neg_moves(moves, a);
+	else if (moves > 0)
+		pos_moves(moves, a);
+	pb(a, b);
+}
 
-	if (argc == 1)
-		return (1);
-	b = NULL;
-	if (!split_all(&argc, argv, &a))
-		return (0);
-	if (error_full_check(&a))
-	{
-		free_stack(&a);
-		return (0);
-	}
-	if (!a)
-		return (1);
-	if (is_sorted(a))
-		return (0);
-	if (argc <= 11)
-		tiny_sort(&a, &b, argc);
-	else
-		large_sort(&a, &b);
-	free_stack(&a);
+int	*sorted_arr(t_stack **x, int end)
+{
+	int	*arr;
+
+	arr = init_arr(*x);
+	quick_sort(0, end, arr);
+	return (arr);
 }

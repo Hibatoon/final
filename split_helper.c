@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_args.c                                       :+:      :+:    :+:   */
+/*   split_helper.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 21:59:36 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/09 21:53:15 by hcharra          ###   ########.fr       */
+/*   Created: 2024/02/13 13:25:07 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/14 15:48:39 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	**allocate(const char *s, char c)
+static char	**allocate(const char *s, char c)
 {
 	int		words;
 	char	**res;
@@ -27,7 +27,7 @@ char	**allocate(const char *s, char c)
 	return (res);
 }
 
-char	*alo_cpy(const char *s, int i, int j)
+static char	*alo_cpy(const char *s, int i, int j)
 {
 	char	*str;
 	int		k;
@@ -49,7 +49,7 @@ char	*alo_cpy(const char *s, int i, int j)
 
 char	**free_all(char **p, int row)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (i < row)
@@ -89,53 +89,24 @@ char	**ft_split(char *s, char c)
 	return (res);
 }
 
-static bool	check_error_split(int argc, char **argv)
+int	check_str(int words, t_stack **a)
 {
-	int		i;
-	int		j;
+	t_stack	*temp;
 
-	i = 0;
-	while (i < argc)
+	temp = *a;
+	if (!words)
 	{
-		j = i + 1;
-		if ((ft_atoi((argv[i])) > INT_MAX) || ((ft_atoi(argv[i])) < INT_MIN))
+		if (temp)
 		{
-			write(2, "Error\n", 6);
-			return (true);
+			write(2, "Error\n", 7);
+			free_stack(a);
+			return (1);
 		}
-		if (check_double(argv, i, j, argc))
+		if (!temp)
 		{
-			return (true);
+			write(2, "Error\n", 7);
+			return (1);
 		}
-		j = 0;
-		if (check_digit(argv, i, j))
-			return (true);
-		i++;
 	}
-	return (false);
-}
-
-int	split_args(char **argv, t_stack **a)
-{
-	char	**args;
-	int		argc;
-	int		i;
-
-	args = ft_split(argv[1], ' ');
-	if (!*args)
-		return (0);
-	argc = count_word(argv[1], ' ');
-	if (check_error_split(argc, args))
-		return (0);
-	i = 0;
-	*a = add_node(ft_atoi(args[i++]));
-	while (i < argc)
-	{
-		append_node(a, add_node(ft_atoi(args[i])));
-		i++;
-	}
-	stack_indexing(*a);
-	stack_moves(*a);
-	free_all(args, argc);
-	return (1);
+	return (0);
 }

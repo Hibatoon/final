@@ -6,7 +6,7 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:59:16 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/12 19:00:02 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/14 14:58:38 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-
-//#include <mcheck.h>
-
-//#define END 2147483648
 
 typedef struct s_list
 {
@@ -90,15 +86,18 @@ int					*sorted_arr(t_stack **x, int end);
 void				a_to_b_help(int moves, t_stack **a, t_stack **b);
 int					push_max(t_stack **b, t_stack **a, int end);
 void				move_b(int moves, t_stack **b);
-int					not_max(t_stack **b, t_stack **a, int index);
+// int					not_max(t_stack **b, t_stack **a, int index);
 int					find_moves(int num, t_stack *b);
-int					move_it(t_stack **a, t_stack **b, int end, int max);
+// int					move_it(t_stack **a, t_stack **b, int end, int max);
 bool				is_there(int num, t_stack *b);
 void				full_bottom(t_stack **a, int index, int end);
 int					return_end(t_stack **a, t_stack **b, int end);
 void				still_there(t_stack **a, t_stack **b, int offset, int *arr);
 void				index_and_move(t_stack **a);
-
+void				move_it_(t_stack **a, t_stack **b, int *end, int max);
+void				is_max(t_stack **a, t_stack **b, int *end);
+void				isnt_max(t_stack **a, t_stack **b, int *index);
+void				not_there(t_stack **a, int *index, int *end);
 typedef struct d_list
 {
 	int				*arr;
@@ -126,5 +125,12 @@ t_fill				ft_assign(t_stack **a, t_stack **b);
 // void    split_all(char **argv, t_stack **a);
 int					split_all(int *argc, char **argv, t_stack **a);
 bool				error_full_check(t_stack **a);
+
+int					check_str(int words, t_stack **a);
+char				**free_all(char **p, int row);
+
+void				ss(t_stack **a, t_stack **b);
+void				rr(t_stack **a, t_stack **b);
+void				rrr(t_stack **a, t_stack **b);
 
 #endif

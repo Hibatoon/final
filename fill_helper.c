@@ -1,40 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   fill_helper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/05 21:58:35 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/14 14:47:36 by hcharra          ###   ########.fr       */
+/*   Created: 2024/02/13 13:24:49 by hcharra           #+#    #+#             */
+/*   Updated: 2024/02/13 13:25:24 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// handle all the white spaces
-int	main(int argc, char **argv)
+void	move_it_(t_stack **a, t_stack **b, int *end, int max)
 {
-	t_stack	*a;
-	t_stack	*b;
+	int	moves;
 
-	if (argc == 1)
-		return (1);
-	b = NULL;
-	if (!split_all(&argc, argv, &a))
-		return (0);
-	if (error_full_check(&a))
-	{
-		free_stack(&a);
-		return (0);
-	}
-	if (!a)
-		return (1);
-	if (is_sorted(a))
-		return (0);
-	if (argc <= 11)
-		tiny_sort(&a, &b, argc);
-	else
-		large_sort(&a, &b);
-	free_stack(&a);
+	moves = find_moves(max, *b);
+	move_b(moves, b);
+	pa(b, a);
+	*end -= 1;
+}
+
+void	is_max(t_stack **a, t_stack **b, int *end)
+{
+	pa(b, a);
+	*end -= 1;
+}
+
+void	isnt_max(t_stack **a, t_stack **b, int *index)
+{
+	pa(b, a);
+	ra(a);
+	*index += 1;
+}
+
+void	not_there(t_stack **a, int *index, int *end)
+{
+	rra(a);
+	*index -= 1;
+	*end -= 1;
 }

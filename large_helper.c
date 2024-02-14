@@ -6,29 +6,11 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 23:23:59 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/12 19:02:40 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/13 13:01:53 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	a_to_b_help(int moves, t_stack **a, t_stack **b)
-{
-	if (moves < 0)
-		neg_moves(moves, a);
-	else if (moves > 0)
-		pos_moves(moves, a);
-	pb(a, b);
-}
-
-int	*sorted_arr(t_stack **x, int end)
-{
-	int	*arr;
-
-	arr = init_arr(*x);
-	quick_sort(0, end, arr);
-	return (arr);
-}
 
 void	still_there(t_stack **a, t_stack **b, int offset, int *arr)
 {
@@ -72,25 +54,6 @@ int	push_max(t_stack **b, t_stack **a, int end)
 	return (end);
 }
 
-int	not_max(t_stack **b, t_stack **a, int index)
-{
-	pa(b, a);
-	ra(a);
-	index++;
-	return (index);
-}
-
-int	move_it(t_stack **a, t_stack **b, int end, int max)
-{
-	int	moves;
-
-	moves = find_moves(max, *b);
-	move_b(moves, b);
-	pa(b, a);
-	end--;
-	return (end);
-}
-
 void	full_bottom(t_stack **a, int index, int end)
 {
 	t_stack	*temp;
@@ -108,16 +71,9 @@ void	full_bottom(t_stack **a, int index, int end)
 	}
 }
 
-int	return_end(t_stack **a, t_stack **b, int end)
-{
-	pa(b, a);
-	end--;
-	return (end);
-}
-
 t_fill	ft_assign(t_stack **a, t_stack **b)
 {
-	t_fill temp;
+	t_fill	temp;
 
 	temp.end = list_size(*b) - 1;
 	temp.arr = sorted_arr(b, temp.end);

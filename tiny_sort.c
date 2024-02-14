@@ -6,7 +6,7 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 22:00:01 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/10 15:35:19 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/13 13:39:14 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	sort_three(t_stack **a)
 		sort_two(*a);
 }
 
-void	sort_else(t_stack **a, t_stack **b)
+static void	sort_else(t_stack **a, t_stack **b)
 {
 	int		size;
 

@@ -6,7 +6,7 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/07 11:23:56 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/12 22:18:54 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/14 14:59:14 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,27 @@ void	sb_bonus(t_stack *first_node, t_stack *second_node)
 
 void	rrb_bonus(t_stack **b)
 {
-	t_stack	*last_1;
+	t_stack	*temp;
 	int		k;
 	int		size;
 	t_stack	*head;
 
-	if (b == NULL || *b == NULL)
+	if ((*b == NULL) || ((*b)->next == NULL))
 		return ;
-	last_1 = *b;
+	if (list_size(*b) <= 1)
+		return ;
+	temp = *b;
 	k = 1;
 	size = list_size(*b);
 	while (k < size - 1)
 	{
-		last_1 = last_1->next;
+		temp = temp->next;
 		k++;
 	}
-	head = last_1->next;
+	head = temp->next;
 	head->next = *b;
 	*b = head;
-	last_1->next = NULL;
+	temp->next = NULL;
 }
 
 void	pb_bonus(t_stack **first_el, t_stack **b)

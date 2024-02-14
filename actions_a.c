@@ -6,7 +6,7 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:56:23 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/12 22:07:23 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/14 14:59:03 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,27 @@
 
 void	rra_bonus(t_stack **a)
 {
-	t_stack	*last_1;
+	t_stack	*temp;
 	int		k;
 	int		size;
 	t_stack	*head;
 
-	last_1 = *a;
+	if ((!*a) || (!((*a)->next)))
+		return ;
+	if (list_size(*a) == 1)
+		return ;
+	temp = *a;
 	k = 1;
 	size = list_size(*a);
 	while (k < size - 1)
 	{
-		last_1 = last_1->next;
+		temp = temp->next;
 		k++;
 	}
-	head = last_1->next;
+	head = temp->next;
 	head->next = *a;
 	*a = head;
-	last_1->next = NULL;
+	temp->next = NULL;
 }
 
 void	sa_bonus(t_stack *first_node, t_stack *second_node)

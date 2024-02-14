@@ -6,7 +6,7 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/05 21:59:31 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/05 22:27:13 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/14 15:27:06 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,24 @@
 
 void	rrb(t_stack **b)
 {
-	t_stack	*last_1;
+	t_stack	*temp;
 	int		k;
 	int		size;
 	t_stack	*head;
 
 	if (b == NULL || *b == NULL)
 		return ;
-	last_1 = *b;
+	temp = *b;
 	k = 1;
 	size = list_size(*b);
 	while (k < size - 1)
 	{
-		last_1 = last_1->next;
+		temp = temp->next;
 		k++;
 	}
-	head = last_1->next;
+	head = temp->next;
 	head->next = *b;
 	*b = head;
-	last_1->next = NULL;
+	temp->next = NULL;
 	write(1, "rrb\n", 4);
 }

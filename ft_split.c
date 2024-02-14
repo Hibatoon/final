@@ -6,88 +6,11 @@
 /*   By: hcharra <hcharra@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/12 19:06:39 by hcharra           #+#    #+#             */
-/*   Updated: 2024/02/12 19:07:24 by hcharra          ###   ########.fr       */
+/*   Updated: 2024/02/14 15:53:25 by hcharra          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-char	**allocate(const char *s, char c)
-{
-	int		words;
-	char	**res;
-
-	res = NULL;
-	if (!s)
-		return (NULL);
-	words = count_word(s, c);
-	res = malloc((words + 2) * sizeof(char *));
-	if (res == NULL)
-		return (NULL);
-	return (res);
-}
-
-char	*alo_cpy(const char *s, int i, int j)
-{
-	char	*str;
-	int		k;
-
-	if (!s)
-		return (NULL);
-	str = malloc((j + 1) * sizeof(char));
-	if (str == NULL)
-		return (NULL);
-	k = 0;
-	while (k < j)
-	{
-		str[k] = s[i + k];
-		k++;
-	}
-	str[k] = '\0';
-	return (str);
-}
-
-char	**free_all(char **p, int row)
-{
-	int	i;
-
-	i = 0;
-	while (i < row)
-	{
-		free(p[i]);
-		i++;
-	}
-	free(p);
-	return (NULL);
-}
-
-char	**ft_split(char *s, char c)
-{
-	int		i;
-	int		j;
-	int		index;
-	char	**res;
-
-	index = -1;
-	i = 0;
-	res = allocate(s, c);
-	if (res == NULL)
-		return (NULL);
-	while (++index < count_word(s, c))
-	{
-		while (s[i] && s[i] == c)
-			i++;
-		j = 0;
-		while (s[i + j] && s[i + j] != c)
-			j++;
-		res[index] = alo_cpy(s, i, j);
-		if (res[index] == NULL)
-			return (free_all(res, index));
-		i += j;
-	}
-	res[index] = NULL;
-	return (res);
-}
 
 static bool	check_error_split(int argc, char **argv)
 {
@@ -153,26 +76,10 @@ bool	error_full_check(t_stack **a)
 	return (false);
 }
 
-int	check_str(int words, t_stack **a)
+void	fill_and_free(char **res, t_stack **a, int words)
 {
-	t_stack	*temp;
-
-	temp = *a;
-	if (!words)
-	{
-		if (temp)
-		{
-			write(2, "Error\n", 6);
-			free_stack(a);
-			return (1);
-		}
-		if (!temp)
-		{
-			write(2, "Error\n", 6);
-			return (1);
-		}
-	}
-	return (0);
+	fill_stack(res, a);
+	free_all(res, words);
 }
 
 int	split_all(int *argc, char **argv, t_stack **a)
@@ -197,8 +104,7 @@ int	split_all(int *argc, char **argv, t_stack **a)
 			free_stack(a);
 			return (0);
 		}
-		fill_stack(res, a);
-		free_all(res, words);
+		fill_and_free(res, a, words);
 		i++;
 	}
 	*argc += 1;
